@@ -1,0 +1,127 @@
+{% load static %}
+<head>
+  <link rel="stylesheet" href="{% static 'css/base/bootstrap.min.css' %}">
+</head>
+<body class="bg-white">  
+  <div class="container-fluid p-2  bac  d-flex justify-content-between">
+    <a href="../" class="my-auto ml-4 "><h5 class="button button1 "> BACK</h5> </a>
+  
+    <a href="{% url 'adminhome' %}" class="text-decoration-none  text-dark my-auto " ><h5 class="button button1" > Baladeya Admin Site</h5></a>
+    
+    <div>
+      {% if user.is_authenticated %}
+          <a href="javascript:{document.getElementById('logout').submit()}" class="text-decoration-none">
+            <div class=" "><h5 class="h-100 text-center  button1 button mr-4">Logout</h5></div>
+          </a>
+          <form action="{% url 'logout' %} " hidden id="logout" method="POST" action="{% url 'adminhome' %}">
+              {% csrf_token %}
+              <input type="hidden"/>
+          </form>
+      {% else %}
+        <a href="{% url 'login' %}" class=" button text-decoration-none"><h5 class="h-100 text-center  button button1 mr-4">Login</h5>  </a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="bac"> 
+    <hr class="bac1 my-0">
+  </div>
+  <div class="rounded-bottom bac p-1 text-white text-center mb-2 d-flex justify-content-between">
+    <h5 class="h5 text-center mmcoding">© mmcoding</h5>
+    <div class="h5 text-light text-center">
+      <h5>{% block directory %}{% endblock %}</h5>
+    </div>
+    <h5>{% now "jS F Y " %}</h5>
+  </div>
+  {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}warning{%else%}success{% endif %} text-center" role="alert"><h3>{{ message }}</h3></div>          
+      {% endfor %}
+  {% endif %}
+       
+  {% block admincontent %}
+  {% endblock %}
+</body>
+        <!-- 
+          E8EBF7
+         960200
+       -->
+<style>
+.mmcoding{
+      animation: myanimation 10s infinite;
+}
+
+
+.button {
+  border: none;
+  color: #E8EBF7;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button1 {
+  background-color: #E8EBF7; 
+  color: #2196f3; 
+}
+
+.button1:hover {
+  background-color: #262626;
+  color: #E8EBF7;
+}
+.button2 {
+  background-color: #05668D; 
+  color: #E8EBF7; 
+}
+
+.button2:hover {
+  background-color: #262626;
+  color: #E8EBF7;
+}
+.button3 {
+  background-color: #262626; 
+  color: #E8EBF7; 
+}
+
+.button3:hover {
+  background-color: #05668D;
+  color: #E8EBF7;
+}
+.buttondelete {
+  background-color: #E63946; 
+  color: #E8EBF7; 
+}
+
+.buttondelete:hover {
+  background-color: #E8EBF7;
+  color: #000000;
+}
+.buttonupdate {
+  background-color: #02C39A; 
+  color: #E8EBF7; 
+}
+
+.buttonupdate:hover {
+  background-color: #E8EBF7;
+  color: #000000;
+}
+
+
+.bac {
+  background: #05668D;
+}
+.bac1 {
+  background: #E8EBF7;
+}
+.bac3 {
+  background: #262626;
+}
+@keyframes myanimation {
+  0% {color: white;}
+
+}
+  </style>

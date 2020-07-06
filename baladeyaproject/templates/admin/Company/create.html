@@ -1,0 +1,28 @@
+{% extends 'admin/adminbase.html' %}
+{% load crispy_forms_tags %}
+{% block directory %}create company {% endblock %}
+
+{% block admincontent %}
+<div class="bac1 p-3 mx-auto">
+    <div class="badge badge-success">  <h1 class="p-1 ">Add A Company :</h1></div>
+    
+    <form action=""  method="POST" enctype="multipart/form-data">
+        
+        {% csrf_token %}
+        <br>
+        <div style="max-width: 300px;"> {{thecompanyform.company_title|as_crispy_field }}</div>
+        
+        <br>
+        <div>{{thecompanyform.company_location|as_crispy_field }}</div>
+        <br>
+        
+        <div class="">{{thecompanyform.company_tell|as_crispy_field }}</div>
+        <br>
+
+
+        <input type="submit" class="btn btn-info "  value="Save">
+    </form>
+    
+    </div>
+
+{% endblock %}

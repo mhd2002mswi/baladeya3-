@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+
+
+{% endblock %}
+{% block content %}
+
+
+<!-- Start SlideShow Section -------------------------------------------------------------------------------------->
+
+<div id="slideshow" class="carousel slide mt-2" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active" >
+      <img src="{% static 'img/test.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'img/test.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'img/test.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+
+  <a class="carousel-control-prev" href="#slideshow" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#slideshow" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+<!-- End Slideshow Section -------------------------------------------------------------------------------------->
+
+<!-- Start News Section -------------------------------------------------------------------------------------->
+
+<!--  Here for dispaly the time {% comment %}It is {% now "SHORT_DATETIME_FORMAT" %}{% endcomment %}-->
+
+
+
+
+<div class="px-2 m-2 d-flex justify-content-center flex-wrap  mx-auto" style="width: 95%;"> 
+  
+  <div class="container-fluid bac2  d-flex justify-content-between my-2" style="border-radius: 10px;">
+    <a href="{% url 'news' %}" class="my-auto mx-2 text-decoration-none button button2 p-2"> المزيد </a>
+      <div class="d-flex justify-content-center">
+      <h2 class="m-2"> آخر الأخبار </h2>
+      <svg class="bi bi-newspaper mx-1 my-auto h2" width="1em" height="1em"
+          viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+              d="M0 2A1.5 1.5 0 011.5.5h11A1.5 1.5 0 0114 2v12a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 010 14V2zm1.5-.5A.5.5 0 001 2v12a.5.5 0 00.5.5h11a.5.5 0 00.5-.5V2a.5.5 0 00-.5-.5h-11z"
+              clip-rule="evenodd" />
+          <path fill-rule="evenodd"
+              d="M15.5 3a.5.5 0 01.5.5V14a1.5 1.5 0 01-1.5 1.5h-3v-1h3a.5.5 0 00.5-.5V3.5a.5.5 0 01.5-.5z"
+              clip-rule="evenodd" />
+          <path
+              d="M2 3h10v2H2V3zm0 3h4v3H2V6zm0 4h4v1H2v-1zm0 2h4v1H2v-1zm5-6h2v1H7V6zm3 0h2v1h-2V6zM7 8h2v1H7V8zm3 0h2v1h-2V8zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1z" />
+      </svg>
+      </div>       
+  </div>
+
+
+   <a href="{% url 'news' %}#decisions" class="text-decoration-none bac1 p-1 mx-auto my-3 rounded" style="width: 75%;min-width: 340px;">
+     <h3 class="text-white text-center mx-auto">آخر القرارات و التعاميم</h3>
+    </a> <!-- decisions sections -->
+  <div class="d-flex justify-content-center flex-wrap" style="max-width: 1000px;min-width: 50%;">
+    {% for data in NewsDecisions %}
+    <div class="card m-2 container1" style="width: 18rem;">
+        <img src="{{ data.news_principale_image.url }}" class="card-img-top image1" alt="...">
+        <div class=" overlay1">
+            <div class="p-auto h1 text1" > <a  href="{% url 'decisions' %}{{ data.id }}" class="p-2   badge badge-secondary">المزيد</a> </div>
+        </div>   
+      <h5 class="card-title d-flex justify-content-center">{{ data.news_title }}</h5>
+    </div>
+    {% endfor %}
+  </div>
+  
+  <a href="{% url 'news' %}#activity" class="text-decoration-none bac1 p-1 mx-auto my-3 rounded" style="width: 75%;min-width: 340px;"> <h3 class="text-white text-center mx-auto">آخر النشاطات</h3></a> 
+  <!-- Activity sections -->
+<div class="d-flex justify-content-center flex-wrap" style="max-width: 1000px;min-width: 50%;">
+  {% for data in NewsActivity %}
+  <div class="card m-2 container1" style="width: 18rem;">
+      <img src="{{ data.news_principale_image.url }}" class="card-img-top image1" alt="...">
+      <div class=" overlay1">
+        <div class="p-auto h1 text1" > <a  href="{% url 'activity' %}{{ data.id }}" class="p-2   badge badge-secondary">المزيد</a> </div>
+    </div>   
+    <h5 class="card-title d-flex justify-content-center">{{ data.news_title }}</h5>
+  </div>
+  {% endfor %}
+</div>
+
+<a href="{% url 'news' %}#project" class="text-decoration-none bac1  p-1 mx-auto my-3 rounded" style="width: 75%;min-width: 340px;"> <h3 class="text-white text-center mx-auto">آخر المشاريع</h3></a>
+  <!-- Project sections -->
+
+<div class="d-flex justify-content-center flex-wrap" style="max-width: 1000px;min-width: 50%;">
+    {% for data in NewsProjectFinish %}
+  <div class="card m-2 container1" style="width: 18rem;">
+      <img src="{{ data.news_principale_image.url }}"  class="card-img-top image1" alt="...">
+      
+      <div class=" overlay1">
+        <div class="p-auto h1 text1" > <a  href="{% url 'project' %}{{ data.id }}" class="p-2   badge badge-secondary">المزيد</a> </div>
+    </div>   
+    <h5 class="card-title d-flex justify-content-center">(منجز){{ data.news_title }}</h5>
+  </div>
+  {% endfor %}       
+  {% for data in NewsProjectNotFinish %}
+  <div class="card m-2 container1" style="width: 18rem;">
+      <img src="{{ data.news_principale_image.url }}" class="card-img-top image1" alt="...">
+      <div class=" overlay1">
+        <div class="p-auto h1 text1" > <a  href="{% url 'project' %}{{ data.id }}" class="p-2   badge badge-secondary">المزيد</a> </div>
+    </div>   
+    <h5 class="card-title d-flex justify-content-center">(قيد الإنجاز) {{ data.news_title }}</h5>
+  </div>
+  {% endfor %}     
+</div>
+</div>
+<!-- maalem sections-->
+
+  <div class=" bac2 d-flex  mx-auto justify-content-between my-2" style="border-radius: 10px;width: 95% ;">
+    <a href="{% url 'maalem' %}" class="my-auto mx-2 text-decoration-none button button2 p-2"> المزيد </a>
+      <div class="d-flex justify-content-center">
+      <h2 class="m-2"> معالم <svg class="bi bi-flag-fill my-auto " width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M3.5 1a.5.5 0 0 1 .5.5v13a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 .5-.5z"/>
+        <path fill-rule="evenodd" d="M3.762 2.558C4.735 1.909 5.348 1.5 6.5 1.5c.653 0 1.139.325 1.495.562l.032.022c.391.26.646.416.973.416.168 0 .356-.042.587-.126a8.89 8.89 0 0 0 .593-.25c.058-.027.117-.053.18-.08.57-.255 1.278-.544 2.14-.544a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5c-.638 0-1.18.21-1.734.457l-.159.07c-.22.1-.453.205-.678.287A2.719 2.719 0 0 1 9 9.5c-.653 0-1.139-.325-1.495-.562l-.032-.022c-.391-.26-.646-.416-.973-.416-.833 0-1.218.246-2.223.916A.5.5 0 0 1 3.5 9V3a.5.5 0 0 1 .223-.416l.04-.026z"/>
+      </svg></h2>
+      </div>       
+  </div>
+<div class="d-felx justify-content-center mx-auto" style="width: 95%;max-width: 1000px;">
+<div id="slideshow1" class="carousel slide" data-ride="carousel1" >
+  <div class="carousel-inner mx-auto" >
+    <div class="carousel-item active"data-interval="False">
+      <img src="{% static 'img/test.jpg' %}"  class="d-block w-100 " alt="...">
+    </div>
+    {% for data in Maalem %}
+    <div class="carousel-item  justify-content-center container1" style="width: 100%;" data-interval="False">
+      <img src="{{data.maalem_principal_image.url}}" class="d-block w-100  image1" alt="...">
+      <div class=" text-center text-white overlay1  ">
+        <div class="text1">
+        {{data.maalem_title}} <br>
+        {{data.maalem_loaction}} <br>     
+      </div>
+      <a class="button button1 container-fluid  p-2 mx-auto  text-decoration-none" href="{% url 'maalem'%}{{ data.id }}" >المزيد</a>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+  <a class="carousel-control-prev" href="#slideshow1" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#slideshow1" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+{% endblock %})

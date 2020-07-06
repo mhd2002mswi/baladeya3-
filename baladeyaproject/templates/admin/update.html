@@ -1,0 +1,12 @@
+{% extends 'admin/adminbase.html' %}
+{% block admincontent %}
+
+<div class="bac1 p-3 mx-auto">
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_ul}}
+    <input type="submit" value="Submit">
+</form>
+
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'admin/adminbase.html' %}
+
+    {% block admincontent %}
+    <div class="bac1 p-3 mx-auto">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <p>Are you sure you want delete this{% block object_title %} {% endblock %}</p>
+            <input class="btn btn-danger " type="submit" value="Confirm">
+            <a class="btn btn-outline-primary" href="../">Cancel</a>
+        </form>
+        
+        </div>
+
+    {% endblock %}
+   

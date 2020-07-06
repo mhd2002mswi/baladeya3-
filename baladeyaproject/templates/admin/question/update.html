@@ -1,0 +1,18 @@
+
+{% extends 'admin/adminbase.html' %}
+{% block directory %}update question '{{object.Question_title}}' {% endblock %}
+
+{% load crispy_forms_tags %}
+{% block admincontent %}
+<div class="bac1 p-3 mx-auto">
+    <div class="badge badge-success">  <h1 class="p-1 ">Update A Question :</h1></div>
+    
+    <form action=""  method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="submit" class="btn btn-info "  value="Save">
+    </form>
+    
+    </div>
+
+{% endblock %}

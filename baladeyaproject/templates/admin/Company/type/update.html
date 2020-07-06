@@ -1,0 +1,19 @@
+
+{% extends 'admin/adminbase.html' %}
+{% load crispy_forms_tags %}
+{% block directory %}update company type '{{object.company_type_title}}' {% endblock %}
+
+{% block admincontent %}
+<div class="bac1 p-3 mx-auto">
+    <div class="badge badge-success">  <h1 class="p-1 ">Update A Company Type :</h1></div>
+    
+    <form action=""  method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <br>
+        <div style="max-width: 300px;"> {{updatecompanytype.company_type_title|as_crispy_field }}</div>
+        <input type="submit" class="btn btn-info "  value="Save">
+    </form>
+    
+    </div>
+
+{% endblock %}

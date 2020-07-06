@@ -1,0 +1,38 @@
+
+{% extends 'admin/adminbase.html' %}
+{% block directory %}detail decision ' {{object.maalem_title}}'{% endblock %}
+{% block admincontent %}
+
+<div class="bac mx-auto p-2  ">
+    <h2 class="text-light">Maalem :</h2>
+    <hr class="bac1">
+    <div class="bac1 text-dark p-2 m-2 h3 rounded">
+<h1>        Title : {{object.maalem_title}} 
+</h1>        <hr class="w-100 bac">
+        Description : {{object.maalem_descriptions}} 
+        <hr class="w-100 bac">
+        {%  if object.maalem_principal_image %}
+        Principal Image : <img src="{{ object.maalem_principal_image.url }}" height="200px" alt=""> 
+        <h6 style="font-size: xx-small;">image name :{{file.maalem_principal_image.name}}</h6>
+        <hr class="w-100 bac">
+        {% endif %}
+        Location : {{object.maalem_loaction}} 
+        <hr class="w-100 bg-dnews_daterk">      
+    </div>
+</div>
+<div class="bac rounded my-2 p-2">
+    <div class="bac1 p-2 d-flex justify-content-center flex-wrap rounded">
+        <h3 class="w-100">Extra Image:</h3>
+        
+        <div style="height: 5px;width: 95%;" class="bac mx-auto rounded my-2"></div>
+        {% for file in extrafile %}
+            {% if file.maalem_image_image %}
+            <div class="mx-2 my-2"> 
+                <img src="{{file.maalem_image_image.url}}" width="300px" class="rounded" alt="">
+                <h6 style="font-size: xx-small;">image name :{{file.maalem_image_image.name}}</h6>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

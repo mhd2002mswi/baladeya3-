@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="bac1  d-flex justify-content-end ">
+    <h2 class="m-2 text-white">الدليل</h2>
+        <svg class="bi h2 text-white my-auto mr-2 bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+        <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+      </svg>
+</div>
+<hr class="my-0 bac2 ">
+<div class="d-flex justify-content-between bac1 text-white mb-3 p-2 flex-wrap">
+    <a href="../"><h4 class="btn  btn-outline-light">المجال : {{CompanySection.company_section_title}}</h4></a>
+
+        <div style="width: 80%;" class="mx-auto mb-1 ">
+            <form action="" method="GET">
+                <div class="input-group ">
+                    <div class="input-group-prepend">
+                        <button class="button button1" style="border-radius: 0%;border-bottom-left-radius: 5px;border-top-left-radius: 5px;height: 38px;" type="submit" value="submit" id="button-addon1">إبحث</button>
+                    </div>
+                    <input type="text" name="search" class="form-control" placeholder="إبحث عن نوع المؤسسة ضمن المجال {{CompanySection.company_section_title}}" >
+                </div>
+            </form>
+        </div>
+
+    
+</div>
+
+
+<div class="bac1 rounded p-4">
+{% if query and not q %}
+<div class="d-flex justify-content-end text-right">
+    <h1 class="text-white h1">  بعض النتائج حول  <span>'{{query}}'</span> </h1>
+</div>
+{% elif q %} 
+    <div class=" d-flex justify-content-between flex-wrap-reverse">
+        <form action="" method="GET">
+            <button class="btn btn-outline-warning m-2" name="query">عرض جميع الانواع </button>
+        </form> 
+        <div class="d-flex justify-content-center text-right">
+            <h1 class="text-white h1"> لا نتائج للعرض حول <span>'{{query}}' </span></h1>
+        </div>  
+    </div>
+{% elif not q %} 
+<div class="d-flex justify-content-center flex-wrap-reverse text-right">
+    <h1 class="text-white mx-1 h1">  جميع انواع المؤسسات   </h1>
+</div>
+{% endif %}    <hr class="bac2">
+    
+{% for type in CompanyType %}
+       <a href="{{type.id}}"><div class="button button1 my-2 p-1 w-100 " id="a{{ type.id }}"><h2> {{type.company_type_title}}</h2></div></a> 
+        
+{% endfor %}
+</div>
+
+
+{% endblock %}

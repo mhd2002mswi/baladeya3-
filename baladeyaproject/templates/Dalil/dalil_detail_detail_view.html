@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="bac1  d-flex justify-content-end ">
+    <h2 class="m-2 text-white">الدليل</h2>
+        <svg class="bi h2 text-white my-auto mr-2 bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+        <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+      </svg>
+</div>
+<hr class="my-0 bac2">
+<div class="d-flex justify-content-between bac1 flex-wrap text-white p-2">
+   
+        <a href="../"><h4 class="btn btn-outline-light"> {{thetype.company_type_title}}: النوع </h4></a>
+        
+ 
+    <div style="width: 80%;" class="mx-auto my-auto mb-1 ">
+        <form action="" method="GET">
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <button class="button button1" style="border-radius: 0%;border-top-left-radius: 5px;border-bottom-left-radius: 5px;height: 38px;" type="submit" value="submit" id="button-addon1">إبحث</button>
+                </div>
+                <input type="text" name="search" class="form-control" placeholder=" {{thetype.company_type_title}} إبحث عن مؤسسة صمن النوع  " >
+            </div>
+        </form>
+    </div>
+</div>
+<div class="bac1 p-2 m-2  rounded d-felx justify-content-center mx-auto" s>
+    {% if query and not q %}
+    <div class="d-flex justify-content-end flex-wrap-reverse">
+        <h1 class="text-white text-right h1">  <span class="text-right">' {{query}}'</span> بعض النتائج حول</h1>
+    </div>
+    {% elif q %} 
+        <div class=" d-flex justify-content-between flex-wrap-reverse">
+            <form action="" method="GET">
+                <button class="btn btn-outline-warning m-2" name="query"> عرض جميع المؤسسات </button>
+            </form> 
+            <h1 class="text-white h1 text-right">   لا نتائج للعرض حول  '{{query}}' </h1>
+            
+        </div>
+    {% elif not q %} 
+    <div class="d-flex justify-content-end">
+        <h1 class="text-white h1"> :  جميع المؤسسات </h1>
+    </div>
+    {% endif %}
+
+<hr class="bac2">
+{% for company in companys %}  
+    <div class="accordion mx-auto my-1"  >
+        <div class="card">
+            <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-center" type="button" data-toggle="collapse" data-target="#collapseOne{{company.id}}" aria-expanded="true" aria-controls="collapseOne">
+                <div class="mx-auto btn  text-dark"><h2>{{company.company_title}}</h2></div> 
+                </button>
+            </h2>
+            </div>
+        
+            <div id="collapseOne{{company.id}}" class="collapse p-1 bac1 text-light" aria-labelledby="headingOne">
+            <div class=" d-flex justify-content-end" ><h3>{{company.company_location}}</h3> <h3 class="mx-2">  :العنوان</h3></div>    
+            <div class=" d-flex justify-content-end" ><h3>{{company.company_tell}}</h3> <h3 class="mx-2">  :رقم الهاتف</h3></div>    
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'admin/adminbase.html' %}
+{% block directory %}detail question '{{object.Question_title}}' {% endblock %}
+
+{% block admincontent %}
+    {% if object.response.all.last %}
+        <div class="badge badge-success p-1 m-0h1 text-center w-100"><h1>This Question Is Responded</h1></div>
+    {% else %}
+        <div class="badge badge-warning p-1 m-0h1 text-center w-100"><h1>This Question Is Not Responded !!!!</h1><a href="response/" class="btn btn-danger  p-1">>Response !<</a></div>
+    {% endif %}
+
+<div class="bac mx-auto p-2  ">
+    <h2 class="text-light">Question:</h2>
+    <hr class="bac1">
+    <div class="bac1 text-dark p-2 m-2 h3 rounded">
+       <h1> Title : {{object.Question_title}} </h1>
+        <hr class="w-100 bac">
+        Text : {{object.Question_text}} 
+        <hr class="w-100 bac">
+        Type : {{object.Question_type}} 
+        <hr class="w-100 bac">
+        Date : {{object.Question_date}} 
+        <hr class="w-100 bac">
+        {% if object.Question_principal_image %}
+            Principale image : <img src="{{object.Question_principal_image.url}}" class="rounded" height="200" alt=""> 
+            <h6 style="font-size: xx-small;">image name :{{object.Question_principal_image.name}}</h6>
+            <hr class="w-100 bac">
+        {% endif %}
+        
+        <div class="bg-secondary text-light p-3 m-1 h3 rounded">
+            Name : {{object.Question_full_name}} 
+            <hr class="w-100 bac1">
+            Phone Number : {{object.Question_phone}} 
+            <hr class="w-100 bac1">
+            Email : {{object.Question_email}} 
+            <hr class="w-100 bac1">
+            Question Show : {{object.Question_show}}           
+            <hr class="w-100 bac1">
+            Special code : {{object.specialcode}}           
+        </div>
+        
+    </div>
+</div>
+
+<hr class="bac1 ">
+{% if object.response.all.last %}
+    <div class="bac mx-auto p-2  ">
+        <h2 class="text-light">Response:</h2>
+            <hr class="bac1">
+        <div class="bac1 text-dark p-2 m-2 h3 rounded">
+        <h1>    Title : {{theresponse.response_title}} </h1>
+            <hr class="w-100 bac">
+            Text : {{theresponse.response_description}} 
+            <hr class="w-100 bac">
+            Date : {{theresponse.response_date}} 
+            <hr class="w-100 bac">
+            {% if theresponse.response_principal_image %}
+                Principale image : <img src="{{theresponse.response_principal_image.url}}" class="rounded" height="200" alt=""> 
+                <h6 style="font-size: xx-small;">image name :{{theresponse.response_principal_image.name}}</h6>
+                <hr class="w-100 bac">
+            {% endif %}
+        </div>
+    
+  {% if theresponsefile %}
+        <div class="bac1 text-dark p-3 m-4 h3 rounded">
+            <h1>All Additional file :</h1>
+            <div class="bac w-80 mx-auto rounded my-5 " style="height: 8px;"></div>
+                {% for responsefile in theresponsefile %}
+                    {% if responsefile.response_image %}
+                        Image Number {{ forloop.counter }} : <img src="{{responsefile.response_image.url}}" class="rounded" height="200" alt=""> 
+                        <h6 style="font-size: xx-small;">image name :{{responsefile.response_image.name}}</h6>
+                        <hr class="w-80      bac">
+                    {% endif %}
+                    {% if responsefile.response_file %}
+                        The file Number {{ forloop.counter }} : <a href="{{responsefile.response_file.url}}" class="btn btn-primary" alt="">Open the file </a>
+                        <h6 style="font-size: xx-small;">file name :{{responsefile.response_file.name}}</h6>
+                    {% endif %}
+                <div class="bac w-80 mx-auto rounded my-5 " style="height: 8px;"></div>
+
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="badge badge-danger p-1 w-100 text-center"> <h1 class="text-center">NO extra file to show</h1> </div>
+        {% endif %}
+    </div>
+    
+    {% else %}
+    <div class="badge badge-danger p-1 w-100 text-center"> <h1 class="text-center">NO RESPONSE AVAILABLE !! PLEAS RESPONSE</h1> </div>
+    {% endif %}
+    
+
+{% endblock %}

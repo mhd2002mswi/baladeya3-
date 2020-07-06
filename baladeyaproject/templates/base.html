@@ -1,0 +1,357 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <!-- <script >
+    window.addEventListener("load", function () {
+      const loader = document.querySelector(".loader");
+      loader.className += " hidden"; // class "loader hidden"
+  });
+ </script>
+   -->
+   
+   {% block meta %}
+   
+   {% endblock %}
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   {% block css %}
+   
+  {% endblock %}
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{% static 'css/base/bootstrap.min.css' %}">
+
+</head>
+
+<body style="background-color: #293241;">
+<div class="bac2 rounded-bottom  ">
+    <div class="d-flex justify-content-center ">
+    <p class="h4 mt-3 mx-4"> municicpality name</p>
+  </div>
+  <div style="width: 99%;height: 2px; " class="mx-auto bac1"></div>
+  <nav class="navbar navbar-expand-xl navbar-light bac2 " id="navigationbar">
+    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon "></span>
+    </button>
+    <div class="collapse navbar-collapse"  id="navbarNav">
+
+      <ul class="navbar-nav ml-auto d-flex flex-xl-row-reverse ">
+
+        <li class="nav-item active  mx-2 d-flex justify-content-end h5"> <a href="{% url 'home' %}" class="button button2 text-decoration-none ">
+           الرئيسية
+          <svg class="bi bi-house mx-1 my-auto" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 00.5.5h9a.5.5 0 00.5-.5V7h1v6.5a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 13.5zm11-11V6l-2-2V2.5a.5.5 0 01.5-.5h1a.5.5 0 01.5.5z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 011.414 0l6.647 6.646a.5.5 0 01-.708.708L8 2.207 1.354 8.854a.5.5 0 11-.708-.708L7.293 1.5z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+        </li>
+        <li class="nav-item active  mx-2 d-flex justify-content-end h5"> <a href="{% url 'news' %}" class="button button2 text-decoration-none ">
+          آخر الأخبار
+          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-newspaper mx-1 my-auto" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M0 2A1.5 1.5 0 0 1 1.5.5h11A1.5 1.5 0 0 1 14 2v12a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 0 14V2zm1.5-.5A.5.5 0 0 0 1 2v12a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V2a.5.5 0 0 0-.5-.5h-11z"/>
+            <path fill-rule="evenodd" d="M15.5 3a.5.5 0 0 1 .5.5V14a1.5 1.5 0 0 1-1.5 1.5h-3v-1h3a.5.5 0 0 0 .5-.5V3.5a.5.5 0 0 1 .5-.5z"/>
+            <path d="M2 3h10v2H2V3zm0 3h4v3H2V6zm0 4h4v1H2v-1zm0 2h4v1H2v-1zm5-6h2v1H7V6zm3 0h2v1h-2V6zM7 8h2v1H7V8zm3 0h2v1h-2V8zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1z"/>
+          </svg>
+        </a>
+        </li>
+
+        <li class="nav-item active  mx-2 d-flex justify-content-end h5"><a href="{% url 'maalem' %}" class="button button2 text-decoration-none">
+           المعالم
+           <svg class="bi bi-flag-fill my-auto " width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M3.5 1a.5.5 0 0 1 .5.5v13a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 .5-.5z"/>
+            <path fill-rule="evenodd" d="M3.762 2.558C4.735 1.909 5.348 1.5 6.5 1.5c.653 0 1.139.325 1.495.562l.032.022c.391.26.646.416.973.416.168 0 .356-.042.587-.126a8.89 8.89 0 0 0 .593-.25c.058-.027.117-.053.18-.08.57-.255 1.278-.544 2.14-.544a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5c-.638 0-1.18.21-1.734.457l-.159.07c-.22.1-.453.205-.678.287A2.719 2.719 0 0 1 9 9.5c-.653 0-1.139-.325-1.495-.562l-.032-.022c-.391-.26-.646-.416-.973-.416-.833 0-1.218.246-2.223.916A.5.5 0 0 1 3.5 9V3a.5.5 0 0 1 .223-.416l.04-.026z"/>
+          </svg>
+        </a>
+        </li>  
+
+        
+        <li class="nav-item active  mx-2 d-flex justify-content-end h5"><a href="{% url 'transactions' %}" class="button button2 text-decoration-none">
+          المعاملات 
+          <svg class="bi bi-card-list mx-1 my-auto" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 00-.5.5v9a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-9a.5.5 0 00-.5-.5zm-13-1A1.5 1.5 0 000 3.5v9A1.5 1.5 0 001.5 14h13a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0014.5 2h-13z" clip-rule="evenodd"/>
+          <path fill-rule="evenodd" d="M5 8a.5.5 0 01.5-.5h7a.5.5 0 010 1h-7A.5.5 0 015 8zm0-2.5a.5.5 0 01.5-.5h7a.5.5 0 010 1h-7a.5.5 0 01-.5-.5zm0 5a.5.5 0 01.5-.5h7a.5.5 0 010 1h-7a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+          <circle cx="3.5" cy="5.5" r=".5"/>
+          <circle cx="3.5" cy="8" r=".5"/>
+          <circle cx="3.5" cy="10.5" r=".5"/>
+        </svg>
+        </a>
+      </li>    
+
+      <li class="nav-item active  mx-2 d-flex justify-content-end h5"><a href="{% url 'rentalvalue' %}" class="button button2 text-decoration-none">
+          الرسوم
+          <svg class="bi bi-layout-text-window-reverse" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zm12-1a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
+            <path fill-rule="evenodd" d="M5 15V4H4v11h1zM.5 4h15V3H.5v1zM13 6.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm0 3a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm0 3a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5z"/>
+          </svg>
+        </a>
+      </li>    
+      
+      <li class="nav-item active  mx-2 d-flex justify-content-end h5"><a href="{% url 'dalil' %}" class="button button2 text-decoration-none">
+      الدليل
+      <svg class="bi  my-auto  bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+        <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+      </svg>
+      </a>
+      </li>   
+      
+      <li class="nav-item active  mx-2 d-flex justify-content-end h5"><a href="{% url 'about' %}" class="button button2 text-decoration-none">
+      بلدية ??????   
+      <svg class="bi bi-info-circle mx-1 my-auto" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+          <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+          <circle cx="8" cy="4.5" r="1"/>
+        </svg>
+      </a>
+      </li>   
+
+       
+      <li class="nav-item active  mx-2 d-flex justify-content-end h5"><a href="{% url 'contactus' %}" class="button button2 text-decoration-none">
+        تواصل معنا
+          <svg class="bi bi-envelope mx-1 my-auto" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M14 3H2a1 1 0 00-1 1v8a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1zM2 2a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H2z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M.071 4.243a.5.5 0 01.686-.172L8 8.417l7.243-4.346a.5.5 0 01.514.858L8 9.583.243 4.93a.5.5 0 01-.172-.686z" clip-rule="evenodd"/>
+            <path d="M6.752 8.932l.432-.252-.504-.864-.432.252.504.864zm-6 3.5l6-3.5-.504-.864-6 3.5.504.864zm8.496-3.5l-.432-.252.504-.864.432.252-.504.864zm6 3.5l-6-3.5.504-.864 6 3.5-.504.864z"/>
+          </svg>
+        </a>
+        </li>  
+
+      </ul>
+    </div>
+  </nav>
+</div>
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}warning{%else%}success{% endif %} text-center" role="alert"><h1>{{ message }}</h1></div>          
+{% endfor %}
+{% endif %}
+
+  {% block content %}
+
+  {% endblock %}
+
+  
+  <footer class="font-small bac2 pt-4    mt-4">
+    <div class="container-fluid text-center text-md-left">
+      <div class="row ml-auto">        
+        <div class="col-md-6 mb-md-0 mb-3">
+          <ul class="list-unstyled ">
+            <li class="d-flex justify-content-start"> 
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-6 mb-md-0 mb-3 ">
+          <h5 class="text-uppercase text-dark d-flex justify-content-end">اتصل بنا</h5>
+          <ul class="list-unstyled text-dark ">
+            <li class="d-flex justify-content-end">00 961 ??? ??? </li>
+            <li class="d-flex justify-content-end">????????????@????.com</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class=" text-white text-center py-4 bac1 ">
+      <h3 class="mmcoding">© mmcoding  </h3>  
+    </div> 
+  </footer>
+
+
+
+<div class="col">
+
+</div>
+
+
+
+
+  {% block js %}
+
+  {% endblock %}
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="{% static 'js/jquery-3.4.1.slim.min.js' %}"></script>
+ <script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+
+</body>
+
+</html>
+<style>
+
+.loader {
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader > img {
+    width: 100px;
+}
+
+.loader.hidden {
+    animation: fadeOut 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.thumb {
+    height: 100px;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+
+
+
+
+  html {
+  scroll-behavior: smooth;
+}
+  .container1 {
+    position: relative;
+    width: 50%;
+  }
+  
+  .image1 {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .overlay1 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(0, 0, 0, 0.425);
+  }
+  
+  .container1:hover .overlay1 {
+    opacity: 1;
+  }
+  
+  .text1 {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+  .ratio{
+   position: relative;
+   width: 100%;
+   padding-top: 56.25%;
+  }
+
+  .ratio_content{
+  position:  absolute;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+}
+.mmcoding {
+      animation: myanimation 10s infinite;
+}
+
+@keyframes myanimation {
+  0% {color: red;}
+  25%{color:yellow;}
+  50%{color:green;}
+  75%{color:brown;}
+  100% {color: red;}
+}
+.button {
+  border: none;
+  color: #E8EBF7;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button1 {
+  background-color: #E8EBF7; 
+  color: #262626; 
+}
+
+.button1:hover {
+  background-color: #262626;
+  color: #E8EBF7;
+}
+.button2 {
+  background-color: #05668D; 
+  color: #E8EBF7; 
+}
+
+.button2:hover {
+  background-color: #262626;
+  color: #E8EBF7;
+}
+.button3 {
+  background-color: #262626; 
+  color: #E8EBF7; 
+}
+
+.button3:hover {
+  background-color: #05668D;
+  color: #E8EBF7;
+}
+.buttondelete {
+  background-color: #E63946; 
+  color: #E8EBF7; 
+}
+
+.buttondelete:hover {
+  background-color: #E8EBF7;
+  color: #000000;
+}
+.buttonupdate {
+  background-color: #02C39A; 
+  color: #E8EBF7; 
+}
+
+.buttonupdate:hover {
+  background-color: #E8EBF7;
+  color: #000000;
+}
+
+
+.bac1 {
+  background: #05668D;
+}
+.bac2 {
+  background: #E8EBF7;
+}
+.bac3 {
+  background: #262626;
+}
+  </style>

@@ -1,0 +1,52 @@
+{% extends 'admin/adminbase.html' %}
+{% load crispy_forms_tags %}
+{% block directory %}create decision {% endblock %}
+
+{% block admincontent %}
+<div class="bac1 p-3 mx-auto">
+    <div class="badge badge-success">  <h1 class="p-1 ">Add A Maalem :</h1></div>
+    
+    <form action=""  method="POST" enctype="multipart/form-data">
+        <div class="mt-2 badge badge-warning">Pleas add your external file number befor you fill the form</div>
+
+        {% csrf_token %}
+        <br>
+        <div style="max-width: 300px;"> {{form.maalem_title|as_crispy_field }}</div>
+        
+        <br>
+        <div>{{form.maalem_descriptions|as_crispy_field }}</div>
+        <br>
+        
+        <div class="">{{form.maalem_principal_image|as_crispy_field }}</div>
+        <br>
+
+        <div style="max-width: 300px;">{{form.maalem_loaction|as_crispy_field }}</div>
+        <br>
+        <div class="p-3">
+            {{ formset.management_form }}
+            {% for forms in formset  %}
+            <hr class="bac1">
+            <div class="bac p-2 rounded text-light my-2">{{ forms.maalem_image_image|as_crispy_field }}</div>
+            {{ forms.pk }}
+            {{ forms.id }}
+            {{ forms.errors }}
+            <br>
+            {% endfor %}
+            
+            <hr class="bac1">
+        </div>
+        <input type="submit" class="btn btn-info "  value="Save">
+    </form>
+    <hr class="bac my-5">
+        <form action="" class="p-4 border" method="GET">
+            <h4>Extra file:</h4>
+            <div class="input-group" style="max-width: 200px;">
+            <input type="number" class="form-control " name="extra" min="0" max="6" placeholder="{{x}}" >
+            <input type="submit" class="btn btn-outline-info ">
+            </div>
+            <br>
+            <p class="bg-secondary my-2 rounded text-light p-1">Hey here you can set the number of extra file you need </p>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'admin/adminbase.html' %}
+{% load crispy_forms_tags %}
+{% block directory %}update response for the question '{{object.Question_title}}'{% endblock %}
+
+{% block admincontent %}
+<div class="bac1 p-3 mx-auto">
+    <div class="badge badge-success">  <h1 class="p-1 ">Update A Response :</h1></div>
+    
+    <form action=""  method="POST" enctype="multipart/form-data">
+        <div class="mt-2 badge badge-warning">Pleas add your external file number befor you fill the form</div>
+        {% csrf_token %}
+        <br>
+        <div style="max-width: 300px;"> {{responseform.response_title|as_crispy_field }}</div>
+        
+        <br>
+        <div>{{responseform.response_description|as_crispy_field }}</div>
+        <br>
+        
+        <div class="">{{responseform.response_principal_image|as_crispy_field }}</div>
+        <br>
+
+
+        <div class="p-3">
+            {{ formset.management_form }}
+            {% for forms in formset  %}
+            <hr class="bac1">
+            <div class="bac p-2 rounded text-light my-2">{{ forms.response_image|as_crispy_field }}</div>
+            <div class="bac p-2 rounded text-light my-2">{{ forms.response_file|as_crispy_field }}</div>
+            {{ forms.pk }}
+            {{ forms.id }}
+            <br>
+            {% endfor %}
+            
+            <hr class="bac1">
+        </div>
+        <input type="submit" class="btn btn-info "  value="Save">
+    </form>
+    <hr class="bac my-5">
+        <form action="" class="p-4 border" method="GET">
+            <h4>Extra file:</h4>
+            <div class="input-group" style="max-width: 200px;">
+            <input type="number" class="form-control " name="extra" min="0" max="6" placeholder="{{x}}" >
+            <input type="submit" class="btn btn-outline-info ">
+            </div>
+            <br>
+            <p class="bg-secondary my-2 rounded text-light p-1">Hey here you can set the number of extra file you need </p>
+        </form>
+    </div>
+
+    <div class="bac text-light p-2 rounded my-2">
+        <div class="bac mx-auto p-2  ">
+            <h2 class="text-light">Question:</h2>
+            <hr class="bac1">
+            <div class="bac1 text-dark p-2 m-2 h3 rounded">
+                Title : {{object.Question_title}} 
+                <hr class="w-100 bac">
+                Text : {{object.Question_text}} 
+                <hr class="w-100 bac">
+                Type : {{object.Question_type}} 
+                <hr class="w-100 bac">
+                Date : {{object.Question_date}} 
+                <hr class="w-100 bac">
+                {% if object.Question_principal_image %}
+                Principale image : <img src="{{object.Question_principal_image.url}}" class="rounded" height="200" alt=""> 
+                <hr class="w-100 bac">
+                {% endif %}
+                <div class="bg-secondary text-light p-3 m-1 h3 rounded">
+                    Name : {{object.Question_full_name}} 
+                    <hr class="w-100 bac1">
+                    Phone Number : {{object.Question_phone}} 
+                    <hr class="w-100 bac1">
+                    Email : {{object.Question_email}} 
+                    <hr class="w-100 bac1">
+                    Question Show : {{object.Question_show}}           
+                </div>
+                
+            </div>
+        </div>
+    
+    </div>
+
+{% endblock %}

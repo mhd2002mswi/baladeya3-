@@ -1,0 +1,30 @@
+{% extends 'admin/adminbase.html' %}
+
+    {% block admincontent %}
+
+    <div class="bac1 rounded mx-auto p-3" style="width: 80%;">
+        <div class=" mb-3 rounded p-1 d-flex justify-content-center"><a href="create/" class="w-50"><div class="button button3 w-100  p-1"><h2>Create</h2></div></a></div>
+        <div class="bac rounded p-1">
+            {% for object in object_list %}
+                <div class="d-flex justify-content-between bac p-1">
+                    <a href="{{ object.id }}/" class="text-decoration-none "><div class="bac rounded m-1 mx-auto p-1 text-center text-white h4" >
+                    {% block object_title %}{% endblock %}
+                    </div>
+                    </a>
+                    <div class="d-flex justify-content-center  p-0">
+                        <div class=" my-auto bac1 rounded mx-3" style="width: 3px;height: 80%;"></div>
+                        <a href="{{ object.id }}/delete/" class="text-decoration-none m-1"><div class="button buttondelete rounded p-1 m-1 mx-auto  text-center m h4" >
+                            Delete
+                        </div></a>
+                        <a href="{{ object.id }}/update/" class="text-decoration-none m-1"><div class="button buttonupdate rounded p-1 m-1 mx-auto  text-center  h4" >
+                            Update
+                        </div></a>
+                    </div>
+                </div>
+            <hr class="m-0 bac1">
+            {% endfor %}
+        </div>
+
+    {% endblock %}
+   
+  

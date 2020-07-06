@@ -1,0 +1,21 @@
+{% extends 'admin/adminbase.html' %}
+{% block directory %}detail transaction '{{object.transactions_title}}' {% endblock %}
+
+{% block admincontent %}
+
+<div class="bac mx-auto p-2  ">
+    <h2 class="text-light">Question:</h2>
+    <hr class="bac1">
+    <div class="bac1 text-dark p-2 m-2 h3 rounded">
+<h1>        Title : {{object.transactions_title}} 
+</h1>        <hr class="w-100 bac">
+        Description : {{object.transactions_descriptions}} 
+        <hr class="w-100 bac">
+        {% if object.transactions_file %}
+        The File :
+       <a href="{{ object.transactions_file.url }}">Open</a>
+       <h6 style="font-size: xx-small;">file name :{{object.transactions_file.name}}</h6> 
+        {% endif %}     
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'admin/adminbase.html' %}
+{% block directory %}Login{% endblock %}
+{% block admincontent %}
+
+
+    <div class="bac rounded my-5 p-4 ">
+        <form action=""  class="bac1 mx-auto rounded p-3" method="POST">
+            {% csrf_token %}
+           
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text text-white bac" id="basic-addon1">Username : </span>
+                </div>
+                <input type="text" name="username" placeholder="User Name" class="form-control" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text bac text-white" id="basic-addon2">Password : </span>
+                </div>
+                <input type="password" name="password" placeholder="Your Password" class="form-control" describedby="basic-addon2">
+            </div>                 
+            <button class="button button2 mt-2" type="submit" value="LogIn">Login</button>
+        </form>
+    </div>
+{% endblock %}

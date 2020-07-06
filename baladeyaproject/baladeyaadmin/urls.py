@@ -1,0 +1,82 @@
+from django.urls import path,include
+#form admin view
+from .views import (
+    login_view,logout,#user
+    home_view,#home 
+    user_view,#user_activity
+    TransactionsDetailView,TransactionsListView,transaction_create,transaction_update,TransactionsDeleteView,#Transactions
+    activity_detail,ActivityListView,activity_create,activity_update_view,activity_delete,#Activity
+    company_detail,company_list_view,company_create,company_update,company_delete,#Company
+    company_section_detail,CompanySectionListView,CompanySectionCreateView,CompanySectionUpdateView,CompanySectionDeleteView,#Company_Section
+    CompanyTypeDetailView,company_type_create,company_type_update,company_type_delete,#Company_Type
+    decisions_detail,NewsDecisionsListView,decisions_create,decisions_update_view,decision_delete,#Decisions
+    maalem_detail,MaalemListView,maalem_create,maalem_update_view,maalem_delete,#Maalem
+    projects_detail,NewsProjectsListView,projects_create,projects_update_view,project_delete,#Project
+    question_detail_view,question_create_view,question_update,question_delete,question_list_view,#Quesiton
+    response_view,response_update_view,#Response
+    
+)
+
+urlpatterns = [
+#user
+    path('login/',login_view,name='login'),#login_function_view
+    path('logout',logout,name='logout'),#logout_function
+    path('user/',user_view,name='useractivity'),#user_activity_view
+#home
+    path('',home_view,name='adminhome'),#home_page_for_the_member_interface
+#transactions
+    path('transaction/<int:pk>/',TransactionsDetailView.as_view(),name='transactionsdetail'),#transaction_detail_view
+    path('transaction/',TransactionsListView.as_view(),name='transactionslist'),#transaction_list_view
+    path('transaction/create/',transaction_create,name='transactionscreate'),#transaction_create_view
+    path('transaction/<int:pk>/update/',transaction_update,name='transactionsupdate'),#transaction_update_view
+    path('transaction/<int:pk>/delete/',TransactionsDeleteView.as_view(),name='transactionsdelete'),#transaction_delete_view
+#activity
+    path('activity/<int:pk>/',activity_detail,name='activitydetail'),#activity_detail_view
+    path('activity/',ActivityListView.as_view(),name='activitylist'),#activity_list_view
+    path('activity/create/',activity_create,name='activitycreate'),#activity_create_view
+    path('activity/<int:pk>/update/',activity_update_view,name='activityupdate'),#activity_update_view
+    path('activity/<int:pk>/delete/',activity_delete,name='activitydelete'),#activity_delete_view
+#company
+    #company_section
+    path('company/<int:pks>/',company_section_detail,name='companysectiondetail'),#company_section_detail
+    path('company/',CompanySectionListView.as_view(),name='companysectionlist'),#company_section_list
+    path('company/create/',CompanySectionCreateView.as_view(),name='companysectioncreate'),#company_section_create
+    path('company/<int:pk>/update/',CompanySectionUpdateView.as_view(),name='companysectionupdate'),#company_section_update
+    path('company/<int:pk>/delete/',CompanySectionDeleteView.as_view(),name='companysectiondelete'),#company_section_delete
+    #company_type
+    path('company/<int:pks>/create/',company_type_create,name='companytypecreate'),#company_type_create
+    path('company/<int:pks>/<int:pk>/update/',company_type_update,name='companytypeupdate'),#company_type_update
+    path('company/<int:pks>/<int:pk>/delete/',company_type_delete,name='companytypedelete'),#company_type_delete
+    #company
+    path('company/<int:pks>/<int:pk>/<int:pkc>/',company_detail,name='companydetail'),#company_detail
+    path('company/<int:pks>/<int:pk>/',company_list_view,name='companylist'),#company_list
+    path('company/<int:pks>/<int:pk>/create/',company_create,name='companycreate'),#company_create
+    path('company/<int:pks>/<int:pk>/<int:pkc>/update/',company_update,name='companyupdate'),#company_update
+    path('company/<int:pks>/<int:pk>/<int:pkc>/delete/',company_delete,name='companydelete'),#company_delete
+#decisions
+    path('decisions/<int:pk>/',decisions_detail,name='decisionsdetail'),#decision_detail_view
+    path('decisions/',NewsDecisionsListView.as_view(),name='decisionslist'),#decision_list_view
+    path('decisions/create/',decisions_create,name='decisionscreate'),#decision_create_view
+    path('decisions/<int:pk>/update/',decisions_update_view,name='decisionsupdate'),#decision_update_view
+    path('decisions/<int:pk>/delete/',decision_delete,name='decisionsdelete'),#decision_delete_view
+#maalem
+    path('maalem/<int:pk>/',maalem_detail,name='maalemdetail'),#maalem_detail_view
+    path('maalem/',MaalemListView.as_view(),name='maalemlist'),#maalem_list_view
+    path('maalem/create/',maalem_create,name='maalemcreate'),#maalem_create_view
+    path('maalem/<int:pk>/update/',maalem_update_view,name='maalemupdate'),#maalem_update_view
+    path('maalem/<int:pk>/delete/',maalem_delete,name='maalemdelete'),#maalem_delete_delete_view
+#projects
+    path('projects/<int:pk>/',projects_detail,name='projectsdetail'),#project_detail_view
+    path('projects/',NewsProjectsListView.as_view(),name='projectslist'),#project_list_view
+    path('projects/create/',projects_create,name='projectscreate'),#project_create_view
+    path('projects/<int:pk>/update/',projects_update_view,name='projectsupdate'),#project_update_view
+    path('projects/<int:pk>/delete/',project_delete,name='projectsdelete'),#project_delete_view
+#question
+    path('question/<int:pk>/',question_detail_view,name='questiondetail'),#question_detail_view
+    path('question/',question_list_view,name='questionlist'),#question_list_view
+    path('question/create/',question_create_view,name='questioncreate'),#question_create_view
+    path('question/<int:pk>/update/',question_update,name='questionupdate'),#question_update_view
+    path('question/<int:pk>/delete/',question_delete,name='questiondelete'),#question_delete_view
+    path('question/<int:pk>/response/update/',response_update_view,name='responseupdate'),#response_update_view
+    path('question/<int:pk>/response/',response_view,name='response'),#response_view
+]

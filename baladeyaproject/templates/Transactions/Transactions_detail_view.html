@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<div class="bac2 rounded p-4 m-2 mx-auto " style="width: 95%;">
+<div class="text-center rounded bac1 h1 text-white p-2" >
+    {{ Transactions.transactions_title }}
+</div>
+    
+<div class="text-center h5  p-2" >
+    {{ Transactions.transactions_descriptions }}
+</div>
+<hr>
+
+<div class="  mx-auto d-flex justify-content-end flex-wrap"  >
+<a href="{{Transactions.transactions_file.url}}" download="" class="btn btn-outline-danger mx-2 d-flex justify-content-center "> 
+    <h4 class="my-auto" style="color: black;">تحميل</h4>
+     <img src="{% static 'icons/download.svg' %}"  height="30" class="m-2" alt="">
+</a>
+<a href="{{Transactions.transactions_file.url}}" class="btn btn-outline-danger mx-2 d-flex justify-content-center"> 
+    <h4 class="my-auto " style="color: black;">فتح</h4>
+     <img src="{% static 'icons/pdf2.svg' %}"  height="30" class="m-2" alt="">
+</a>
+
+</div>
+</div>
+
+
+{% endblock %}

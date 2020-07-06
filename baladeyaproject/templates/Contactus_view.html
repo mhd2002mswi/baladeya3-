@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="bac2 p-2 my-4 mx-auto d-flex justify-content-between flex-wrap " style="border-radius: 20px;width: 95%  ;">  
+  <div class="mx-auto "  >
+    <h1 class="mx-auto text-center"> ساعات العمل</h1>
+    <h6 class="text-center mx-auto">????????????????? ??????????????????????? ???????????????? ??????????? ??????????</h6>
+  </div>
+  
+  <div class=" bac1 mx-auto " style="width: 99%;">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26496.135674888737!2d35.486772722366396!3d33.889217061624734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151f17215880a78f%3A0x729182bae99836b4!2sBeirut!5e0!3m2!1sen!2slb!4v1592058619670!5m2!1sen!2slb"
+      height="450" frameborder="0" style="border:0;width: 100%;" allowfullscreen="" aria-hidden="false" tabindex="0" class=" mx-auto ">
+    </iframe>
+  </div>
+      
+</div>
+{% comment %}
+<div class="bac2 p-2 my-4 mx-auto" style="border-radius: 20px;width: 95%;">    
+  <div class="">
+    <h1 class="mt-4 mb-0 mr-2 d-flex justify-content-end text-center ">تابع آخر الأخبار</h1>
+    <h5 class="mt-3 m-3 d-flex justify-content-end text-center">ادخل بريدك الألكتروني لتصلك آخر أخبارنا </h5>
+    </div>
+    
+    <div class="  mx-3 ">
+      <form class="" action="" method="POST">
+        {% csrf_token %}
+        <div class="input-group my-4">
+          <div class="input-group-prepend">
+            <button class="btn btn-outline-info text-dark" type="submit" id="button-addon1" value="ارسل" style="height: 38px;">أرسل</button>
+          </div>   
+          {{ EmailForm.email}}
+        </div>
+        <div class="m-2 mx-auto"> {{ EmailForm.captcha}} </div>   
+      </form>
+    </div>    
+  </div>
+  {% endcomment %}
+  
+<div class="bac2 p-4 my-4 mx-auto " style="border-radius: 20px;width: 95%;">
+  <div class="d-flex justify-content-end container-fluid">
+    <h1 >لديك سؤال؟</h1>
+  </div>  
+  <div class="d-flex justify-content-start" style="width: 100%;">
+    
+    
+    <form class=" form-group mt-3" action="" method="POST" style="width: 100%" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-row"> 
+        <div class="col-md-4">{{ QuestionForm.Question_full_name }}</div>
+        <div class="col-md-4">{{ QuestionForm.Question_phone }}</div>
+        <div class="col-md-4">{{ QuestionForm.Question_email }}</div> 
+      </div>
+      <div class="form-group">
+      {{ QuestionForm.Question_title }}
+      {{ QuestionForm.Question_text }}
+    </div>
+      <div class="custom-file">
+        <label class="custom-file-label" for="customFile">أرفق صورة - إختياري</label>
+        {{ QuestionForm.Question_principal_image }}
+        
+      </div>
+      {{ QuestionForm.Question_type }}
+
+    <div class="my-2 mx-auto"> {{ QuestionForm.captcha }} </div>
+      <input class="button button2" type="submit" value="ارسل"/>
+    </form>
+    
+
+  </div>
+</div>
+
+
+<div class=" bac2 p-2 my-4 mx-auto" style="border-radius: 20px;width: 95%;">
+  <h1 class="d-flex justify-content-end text-center m-3">آخر الأسألة والأجوبة</h1>
+    <div style="width: 80%;" class="mx-auto mb-1 ">
+      <form action="" method="GET">
+        <div class="input-group ">
+          <div class="input-group-prepend">
+            <button class="button button2" style="border-radius: 0%;border-bottom-left-radius: 5px;border-top-left-radius: 5px;height: 38px;" type="submit" value="submit" id="button-addon1">إبحث</button>
+          </div>
+          <input type="text" name="search" class="form-control" placeholder="ابحث عن سؤال" >
+      </div>
+    </form>
+  </div>  
+  {% if result != '' %}
+  <h4 class="mx-auto text-center">here some result for {{ result }}</h4>
+  {% endif %}
+{% for data in LastQuestion %}
+{% if data.Question_show %}
+<div style="border-radius: 20px;" class=" p-3 m-2">
+  <div class="bac1 p-3 rounded-top  " >
+    <div  data-toggle="collapse" href="#b{{ data.id }}" role="button" aria-expanded="false" aria-controls="collapseExample" class="btn container-fluid">
+      <h1 class="d-flex justify-content-end  text-center text-white " >{{ data.Question_title }}</h1></div>
+    <div class="bac2 m-2" style="width: 100%;height: 2px;" ></div>
+    <div class="collapse" id="b{{ data.id }}"><p class="d-flex justify-content-end  text-center text-white">{{ data.Question_text }}</p></div>
+  </div>
+  {% for respons in Response %}
+  {% if respons.response_queston == data %}
+
+  <div class="bg-info rounded-bottom p-3 ">
+    <div data-toggle="collapse" href="#ba{{ respons.id }}" role="button" aria-expanded="false" aria-controls="collapseExample" class="btn container-fluid">
+      <h1 class="d-flex justify-content-end text-center text-white ">{{ respons.response_title }}</h1></div>
+    <div class="bac2 m-2" style="width: 100%;height: 2px;" ></div>
+    <div  class="collapse" id="ba{{ respons.id }}"><p class="d-flex justify-content-end text-center text-white ">{{ respons.response_description }}</p></div>
+    
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+{% endif %}
+{% endfor %}
+</div>
+
+
+
+
+
+{% endblock %}

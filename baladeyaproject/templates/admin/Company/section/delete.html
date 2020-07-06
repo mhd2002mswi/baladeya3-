@@ -1,0 +1,13 @@
+{% extends 'admin/adminbase.html' %}
+{% block admincontent %}
+{% block directory %}delete company section '{{object.company_section_title}}' {% endblock %}
+<div class="bac1 p-3 mx-auto">
+<form action="" method="POST">
+    {% csrf_token %}
+    <p>Are you sure you want delete this company section {{object.company_section_title}}</p>
+    <input class="btn btn-danger " type="submit" value="Confirm">
+    <a class="btn btn-outline-primary" href="../">Cancel</a>
+</form>
+
+</div>
+{% endblock %}

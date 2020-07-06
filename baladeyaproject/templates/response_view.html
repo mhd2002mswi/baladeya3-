@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="bac1 mx-auto p-2 rounded-bottom" style="width: 95%;">
+        <div class="mx-auto">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class=" w-50">{{ResponseForm.special_code}} </div>
+                <div class="">{{ResponseForm.captcha}} </div>
+                <input class="button button1" type="submit" value="Save"/>
+            </form>
+        </div> 
+        </div> 
+        {% if a %}
+            <div class="mx-4">
+                <div class="mx-auto w-80 bac2 rounded my-3" style="height: 2px;"></div>
+                <h1 class="text-white text-center w-100" > سؤالك هنا</h1>
+                <div class="mx-auto w-80 bac2 rounded my-3" style="height: 2px;"></div>
+                <div class="justify-content-center flex-wrap d-flex rounded bac2">
+                    {%if Question.Question_full_name%}                      <div class="h5 m-2 text-right d-flex justify-content-end flex-wrap-reverse">{{ Question.Question_full_name }} <h5 class=" text-right ">:الإسم</h5></div>{% endif %}
+                    {%if Question.Question_email%}                          <div class="h5 m-2 text-right d-flex justify-content-end flex-wrap-reverse">{{ Question.Question_email }} <h5 class=" text-right ">:البريد الإلكتروني</h5></div>{% endif %}
+                    {%if Question.Question_phone%}                          <div class="h5 m-2 text-right d-flex justify-content-end flex-wrap-reverse">{{ Question.Question_phone }} <h5 class=" text-right ">:رقم الهاتف</h5></div>{% endif %}
+                </div>
+                <div class="mx-auto w-60 bac2 rounded my-3" style="height: 2px;"></div>
+                <div class="rounded bac2 p-2">
+                    {%if Question.Question_principal_image%}                <div class="h5 m-2 text-center" ><img src="{{ Question.Question_principal_image.url }}" width="200" class="rounded" alt=""></div>{% endif %}
+                                                                            <div class="h5 m-2 text-right d-flex justify-content-end flex-wrap-reverse" >{{ Question.Question_title }} <h5 class="text-right ">:عنوان السؤال</h5></div>
+                                                                            <div class="h5 m-2 text-right d-flex justify-content-end flex-wrap-reverse" >{{ Question.Question_text}} <h5 class="text-right ">:السؤال</h5></div>
+                                                                            <div class="h5 m-2 text-right d-flex justify-content-end flex-wrap-reverse" >{{ Question.Question_date }} <h5 class="text-right ">:وقت السؤال</h5></div>
+                                                                            <div class="h5 m-2 text-right d-flex justify-content-end flex-wrap-reverse" >{{ Question.Question_type }} <h5 class="text-right ">:نوع السؤال </h5></div>
+                </div>  
+            <div class="mx-auto w-80 bac2 rounded my-3" style="height: 2px;"></div>
+            {% if Response %}
+                <h1 class="text-white text-center w-100" > الإجابة هنا</h1>
+                <div class="mx-auto w-80 bac2 rounded my-3" style="height: 2px;"></div>
+                <div class="rounded bac2 p-2">
+                    {%if Response.response_title%}                              <div class="h5 m-2 text-right d-flex justify-content-end flex-wrap-reverse">{{Response.response_title}} <h5 class="text-right ">:عنوان الإجابة        </h5></div>{% endif %}
+                    {%if Response.response_description%}                        <div class="h5 m-2 text-right d-flex justify-content-end flex-wrap-reverse">{{Response.response_description}} <h5 class="text-right ">:الإجابة  </h5></div>{% endif %}
+                    <div class="h5 m-2 text-right d-flex justify-content-end flex-wrap-reverse">{{Response.response_date}} <h5 class="text-right ">:وقت الإجابة        </h5> </div>
+                        {%if Response.response_principal_image%}                <div class="text-center"><img src="{{Response.response_principal_image.url}}" width="200" class="rounded" alt=""></div>{% endif %}
+                </div>
+            {% else %}
+                <div class="bg-danger text-center text-white rounded h1 p-3"> الإجابة غير متوفرة الرجاء الإنتظار</div>
+            {% endif %}
+    
+    {% if theresponsefile %}
+        <div class="bac2 text-dark p-3 my-4 h3 rounded">
+            <h1>All Additional file :</h1>
+            <div class="bac1 w-80 mx-auto rounded my-5 " style="height: 8px;"></div>
+            {% for responsefile in theresponsefile %}
+            
+                {% if responsefile.response_image %}
+                    <img src="{{responsefile.response_image.url}}" class="rounded" height="200" alt=""> : الصورة رقم  {{ forloop.counter }} 
+                    <h6 style="font-size: xx-small;">image name :{{responsefile.response_image.name}}</h6>
+                    <hr class="w-80      bac1">
+                {% endif %}
+                {% if responsefile.response_file %}
+                 <a href="{{responsefile.response_file.url}}" class="btn btn-primary" alt="">فتح الملف </a>
+                    <a href="{{responsefile.response_file.url}}" download class="btn btn-danger" alt="">تحميل الملف </a>:{{ forloop.counter }} الملف رقم 
+                    <h6 style="font-size: xx-small;">{{responsefile.response_file.name}} : إسم الملف</h6>
+                {% endif %}
+                <div class="bac1 w-80 mx-auto rounded my-5 " style="height: 8px;"></div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="bg-danger rounded  text-light p-1 w-100 text-center"> <h1 class="text-center">لا يوجد ملفات اضافبة لإضهارها</h1> </div>
+    {% endif %}
+    </div>
+{% endif %}
+
+{% endblock %}

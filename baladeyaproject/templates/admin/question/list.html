@@ -1,0 +1,131 @@
+{% extends 'admin/adminbase.html' %}
+{% block directory %}list question {% endblock %}
+
+{% block admincontent %}
+
+
+<div class="bac1 rounded mx-auto p-3" style="width: 80%;">
+    <a href="create/"><div class="button button3 mb-2 w-100 "><h1>Create a Question</h1> </div></a>
+    <form action="" method="GET" class="bac d-flex justify-content-between flex-wrap p-3 my-0 rounded-top">
+        <div class="" style="width: 90%;">
+            <input type="checkbox" name="checkbox" {% if respondedquestion %} checked {% endif %} class="my-auto" >
+            <label for="checkbox" class="my-auto text-light mx-2">SHOW THE NOT RESPONDED QUESTIOIN ONLY  </label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+            <label class="input-group-text mt-3 bac1" for="selection">Type </label>   
+            </div>  
+            <select name="type" class="custom-select mt-3" id="selection" >
+                <option {% if type == '0' %}selected {% endif %}>All</option>
+                <option {% if type == '1' %}selected {% endif %} value="1">شكوى</option>
+                <option {% if type == '2' %}selected {% endif %} value="2">سؤال</option>
+                <option {% if type == '3' %}selected {% endif %} value="3">استفسار</option>
+            </select>
+            </div>
+        </div>
+        <input type="submit" class="button button1 mt-1  p-1" style="width: 9%;"  value="Deploy">
+    </form>
+    <form method="GET" class="bac d-flex justify-content-center flex-wrap p-2 my-0 rounded-bottom input-group " action="">
+        <div class="input-group-prepend">
+            <button class="button button1   " style="height: 38px; border-radius: 0%;border-bottom-left-radius: 5px;border-top-left-radius: 5px;" type="submit" id="button-addon1">Search</button>
+        </div>
+        <input type="text" class="form-control" placeholder="search by title" name="search">
+    </form>
+        <hr class="my-3 bac rounded" style="height: 5px;">
+   <div class="bac p-1 rounded">
+    {% if respondedquestion %}
+            {% for object in object_list %}
+                {% if not object.response.all.last %}
+                <div class="d-flex justify-content-between bac p-1">
+                    <div class="d-flex justify-content-center ">
+                        <a href="{{ object.id }}/" class="text-decoration-none ">
+                            <div class="bac rounded m-1 mx-auto p-1 text-center text-white h4" >
+                                <div class='bac1 text-dark p-1 rounded'>
+                                    {{object.Question_title}} 
+                                </div>
+                            </div>
+                        </a>    
+                        <div class=" my-auto bac1 rounded mx-3" style="width: 3px;height: 80%;"></div>
+                        <a href="{{ object.id }}/response/" class="my-auto">
+                            <div class="button button1 my-auto">Response</div>
+                        </a>
+                    </div>
+                    <p class="my-auto text-white" >made by: {{object.madetby}}</p>                     
+                    <div class="d-flex justify-content-center  p-0">
+                        <div class=" my-auto bac1 rounded mx-3" style="width: 3px;height: 80%;"></div>
+                        <a href="{{ object.id }}/delete/" class="text-decoration-none m-1"><div class="button buttondelete rounded p-1 m-1 mx-auto  text-center m h4" >
+                            Delete
+                        </div></a>
+                        <a href="{{ object.id }}/update/" class="text-decoration-none m-1"><div class="button buttonupdate rounded p-1 m-1 mx-auto  text-center  h4" >
+                            Update
+                        </div></a>
+                    </div>
+                </div>  
+                        <hr class="m-0 bac1">
+                {% endif %}
+            {% endfor %}
+    {% else %}
+            {% for object in object_list %}
+            {% if object.response.all.last %}
+                <div class="d-flex justify-content-between bac p-1">
+                    <div class="d-flex justify-content-center">
+                        <a href="{{ object.id }}/" class="text-decoration-none ">
+                            <div class="bac rounded m-1 mx-auto p-1 text-center text-white h4" >
+                                <div class='bac1 text-dark p-1 mx-1 rounded'>
+                                {{object.Question_title}} 
+                                </div>
+                            </div>
+                        </a>
+                        <div class=" my-auto bac1 rounded mx-3" style="width: 3px;height: 80%;"></div>
+
+                        <a href="{{ object.id }}/response/update/" class="my-auto">
+                            <div class="btn btn-outline-warning my-auto">Edit The Response</div>
+                        </a> 
+                    </div>
+                    <p class="my-auto text-white" >made by: {{object.madetby}}</p> 
+                    <div class="d-flex justify-content-center  p-0">
+                        <div class=" my-auto bac1 rounded mx-3" style="width: 3px;height: 80%;"></div>
+                        <a href="{{ object.id }}/delete/" class="text-decoration-none m-1"><div class="button buttondelete rounded p-1 m-1 mx-auto  text-center m h4" >
+                            Delete
+                        </div></a>
+                        <a href="{{ object.id }}/update/" class="text-decoration-none m-1"><div class="button buttonupdate rounded p-1 m-1 mx-auto  text-center  h4" >
+                            Update
+                        </div></a>
+                    </div>
+                    </div>
+                        {% else %}
+                        <div class="d-flex justify-content-between bac p-1">
+                            <div class="d-flex justify-content-center ">
+                                <a href="{{ object.id }}/" class="text-decoration-none ">
+                                    <div class="bac rounded m-1 mx-auto p-1 text-center text-white h4" >
+                                        <div class='bac1 text-dark p-1 rounded'>
+                                            {{object.Question_title}} 
+                                        </div>
+                                    </div>
+                                </a>   
+                                <div class=" my-auto bac1 rounded mx-3" style="width: 3px;height: 80%;"></div>
+                                <a href="{{ object.id }}/response/" class="my-auto">
+                                    <div class="button button1 my-auto">Response</div>
+                                </a>
+                            </div>
+                            <p class="my-auto text-white" >made by: {{object.madetby}}</p> 
+                            <div class="d-flex justify-content-center  p-0">
+                                <div class=" my-auto bac1 rounded mx-3" style="width: 3px;height: 80%;"></div>
+                                <a href="{{ object.id }}/delete/" class="text-decoration-none m-1"><div class="button buttondelete rounded p-1 m-1 mx-auto  text-center m h4" >
+                                    Delete
+                                </div></a>
+                                <a href="{{ object.id }}/update/" class="text-decoration-none m-1"><div class="button buttonupdate rounded p-1 m-1 mx-auto  text-center  h4" >
+                                    Update
+                                </div></a>
+                            </div>
+                        </div>  
+                        {% endif %}
+                
+ 
+                <hr class="m-0 bac1">
+            {% endfor %}
+    {% endif %}
+</div>
+
+</div>
+
+{% endblock %}

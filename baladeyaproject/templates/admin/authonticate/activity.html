@@ -1,0 +1,103 @@
+{% extends 'admin/adminbase.html' %}
+{% block directory %}user activity '{{user}}'{% endblock %}
+
+{% block admincontent %}
+
+    <div class="bac1 p-3  mx-auto rounded" style="width: 80%;">
+        <div class="mx-2 bac1 rounded p-1 w-100">
+            <form action="" method="GET">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary" type="submit">Deploy</button>
+                    </div>
+                    <select class="custom-select" name="category">
+                    <option {% if x == '9'  %} selected {% endif %} value="9">Activity</option>
+                    <option {% if x == '1'  %} selected {% endif %} value="1">Projects</option>
+                    <option {% if x == '2'  %} selected {% endif %} value="2">Decisions</option>
+                    <option {% if x == '3'  %} selected {% endif %} value="3">Transactions</option>
+                    <option {% if x == '4'  %} selected {% endif %} value="4">Question</option>
+                    <option {% if x == '5'  %} selected {% endif %} value="5">Response</option>
+                    <option {% if x == '6'  %} selected {% endif %} value="6">Maalem</option>
+                    <option {% if x == '7'  %} selected {% endif %} value="7">Company</option>
+                    <option {% if x == '8'  %} selected {% endif %} value="8">Company Type</option>
+                    </select>
+                </div>
+            </form>
+            <div class="bac rounded p-2">
+            {% if x == '9'  %}
+                <div class="text-center h1 my-3 text-white">            Here All Activitys made by you:                </div>
+                <hr class="bg-light">
+                {% for data in category %}
+                    <div class="bac rounded p-1 text-white text-center my-1"><h3>{{data.news_title}}</h3></div>
+                    <hr class="bac1">
+                {% endfor %}
+
+            {% elif x == '1' %}
+                <div class="text-center h1 my-3 text-white">            Here All Projects made by you:                </div>
+                <hr class="bg-light">
+                {% for data in category %}
+                    <div class="bac rounded p-1 text-white text-center my-1"><h3>{{data.news_title}}</h3></div>
+                    <hr class="bac1">
+                {% endfor %}
+
+            {% elif x == '2' %}
+                <div class="text-center h1 my-3 text-white">            Here All Decisions made by you:                </div>
+                <hr class="bg-light">
+                {% for data in category %}
+                    <div class="bac rounded p-1 text-white text-center my-1"><h3>{{data.news_title}}</h3></div>
+                    <hr class="bac1">
+                {% endfor %}
+
+            {% elif x == '4' %}
+                <div class="text-center h1 my-3 text-white">            Here All Question made by you:                </div>
+                <hr class="bg-light">
+                {% for data in category %}
+                    <div class="bac rounded p-1 text-white text-center my-1"><h3>{{data.Question_title}}</h3></div>
+                    <hr class="bac1">
+                {% endfor %}
+
+            {% elif x == '5' %}
+                <div class="text-center h1 my-3 text-white">            Here All Response made by you:                </div>
+                <hr class="bg-light">
+                {% for data in category %}
+                    <div class="bac rounded p-1 text-white text-center my-1"><h3>{{data.response_title}}</h3></div>
+                    <hr class="bac1">
+                {% endfor %}
+
+            {% elif x == '3' %}
+                <div class="text-center h1 my-3 text-white">            Here All Transaction made by you:                </div>
+                <hr class="bg-light">
+                {% for data in category %}
+                    <div class="bac rounded p-1 text-white text-center my-1"><h3>{{data.transactions_title}}</h3></div>
+                    <hr class="bac1">
+                {% endfor %}
+
+            {% elif x == '6' %}
+                <div class="text-center h1 my-3 text-white">            Here All Maalem made by you:                </div>
+                <hr class="bg-light">
+                {% for data in category %}
+                    <div class="bac rounded p-1 text-white text-center my-1"><h3>{{data.maalem_title}}</h3></div>
+                    <hr class="bac1">
+                {% endfor %}
+
+            {% elif x == '7' %}
+                <div class="text-center h1 my-3 text-white">            Here All Company made by you:                </div>
+                <hr class="bg-light">
+                {% for data in category %}
+                    <div class="bac rounded p-1 text-white text-center my-1"><h3>{{data.company_title}}</h3></div>
+                    <hr class="bac1">
+                {% endfor %}
+
+            {% elif x == '8' %}
+                <div class="text-center h1 my-3 text-white">            Here All Company Type made by you:                </div>
+                <hr class="bg-light">
+                {% for data in category %}
+                    <div class="bac rounded p-1 text-white text-center my-1"><h3>{{data.company_type_title}}</h3></div>
+                    <hr class="bac1">
+                {% endfor %}
+
+            {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
